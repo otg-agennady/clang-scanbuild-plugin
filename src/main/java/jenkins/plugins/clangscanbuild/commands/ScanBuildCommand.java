@@ -54,16 +54,20 @@ public class ScanBuildCommand implements Command{
 		
 		args.add( "xcodebuild" );
 		
-		if( isNotBlank( getWorkspace() ) ){ 
-			// Xcode 4 workspace
-			args.add( "-workspace", getWorkspace() );
-			args.add( "-scheme", getScheme() );
-			
+		if( isNotBlank( getScheme() ) ){
+            args.add( "-scheme", getScheme() );
+			// Xcode workspace
+            if( isNotBlank( getWorkspace() ) ) {
+                args.add("-workspace", getWorkspace());
+            }else{
+                context.log("Using \'"+projectDirectory+"\' as workspace auto search directory");
+            }
+
 			if( isNotBlank( getTarget() ) ){
-				context.log( "Ignoring build target '" + getTarget() + "' because a workspace & scheme was provided" );
+				context.log( "Ignoring build target '" + getTarget() + "' because scheme/workspace was provided" );
 			}
-		}else{ 
-			// Xcode 3,4 standalone project
+		}else{
+			// Xcode standalone project
 			if( isNotBlank( getTarget() ) ){
 				args.add( "-target", getTarget() );
 			}else{
@@ -76,7 +80,7 @@ public class ScanBuildCommand implements Command{
 		if( isNotBlank( getTargetSdk() ) ) args.add( "-sdk", getTargetSdk() );
 		
 		args.add( "clean" ); // clang scan requires a clean
-		args.add( "build" );
+		args.add( "analyze" );
                 
 		String additionalXcodeBuildArgs = getAdditionalXcodeBuildArguments();
 		if( isNotBlank( additionalXcodeBuildArgs ) ){
