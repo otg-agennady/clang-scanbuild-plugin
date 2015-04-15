@@ -3,15 +3,16 @@
 	<j:set var="bugSummary" value="${it.loadBugSummary()}"/>
 	
 	<l:layout title="Clang Scan-Build">
-
+	<st:include it="${it.build}" page="sidepanel.jelly"/>
     <l:main-panel>
     	<h2>Clang scan-build bug report for build #${bugSummary.buildNumber}</h2>
 	
 		<table border="1px" class="sortable pane">
 	      <tr>
+	        <td>Group</td>
+	        <td>Type</td>
 	      	<td>File</td>
-	        <td>Bug Type</td>
-	        <td>Category</td>
+		<td>Path Length</td>
 	        <td>Description</td>
 	        <td></td>	      
 	      </tr>
@@ -19,13 +20,16 @@
 	    <j:forEach var="bug" items="${bugSummary.bugs}">
 	      <tr style="${h.ifThenElse( bug.newBug,'background-color: #FCDEDE;','')}">
 	        <td>
-	          <st:out value="${bug.sourceFile}"/>
+	          <st:out value="${bug.bugCategory}"/>
 	        </td>
 	        <td>
 	          <st:out value="${bug.bugType}"/>
 	        </td>
 	        <td>
-	          <st:out value="${bug.bugCategory}"/>
+	          <st:out value="${bug.sourceFile}"/>
+	        </td>
+	        <td>
+	          <st:out value="${bug.bugPathLength}"/>
 	        </td>
 	        <td>
 	          <st:out value="${bug.bugDescription}"/>
