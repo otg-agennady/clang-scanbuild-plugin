@@ -3,7 +3,7 @@
 	<j:set var="bugSummary" value="${it.loadBugSummary()}"/>
 	
 	<l:layout title="Clang Scan-Build">
-
+	<st:include it="${it.build}" page="sidepanel.jelly"/>
     <l:main-panel>
     	<h2>Clang scan-build bug report for build #${bugSummary.buildNumber}</h2>
 	
