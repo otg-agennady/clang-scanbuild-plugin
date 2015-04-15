@@ -7,6 +7,10 @@ public class ClangScanBuildBug {
 	public String bugType;
 	public String bugDescription;
 	public String bugCategory;
+	public String functionName;
+	public String bugLine;
+	public String bugColumn;
+	public String bugPathLength;
 	public boolean newBug;
 	
 	public boolean isNewBug() {
@@ -45,7 +49,31 @@ public class ClangScanBuildBug {
 	public void setSourceFile(String sourceFile) {
 		this.sourceFile = sourceFile;
 	}
-	
+	public String getFunctionName() {
+		return functionName;
+	}
+	public void setFunctionName(String functionName) {
+		this.functionName = functionName;
+	}
+	public String getBugLine() {
+		return bugLine;
+	}
+	public void setBugLine(String BugLine) {
+		this.bugLine = bugLine;
+	}
+	public String getBugColumn() {
+		return bugColumn;
+	}
+	public void setBugColumn(String bugColumn) {
+		this.bugColumn = bugColumn;
+	}
+	public String getBugPathLength() {
+		return bugPathLength;
+	}
+	public void setBugPathLength(String bugPathLength) {
+		this.bugPathLength = bugPathLength;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

@@ -37,6 +37,10 @@ public class ClangScanBuildPublisher extends Recorder{
 	private static final Pattern BUG_DESC_PATTERN = Pattern.compile( "<!--\\sBUGDESC\\s(.*)\\s-->" );
 	private static final Pattern BUGFILE_PATTERN = Pattern.compile( "<!--\\sBUGFILE\\s(.*)\\s-->" );
 	private static final Pattern BUGCATEGORY_PATTERN = Pattern.compile( "<!--\\sBUGCATEGORY\\s(.*)\\s-->" );
+	private static final Pattern FUNCTIONNAME_PATTERN = Pattern.compile( "<!--\\sFUNCTONNAME\\s(.*)\\s-->" );
+	private static final Pattern BUGLINE_PATTERN = Pattern.compile( "<!--\\sBUGLINE\\s(.*)\\s-->" );
+	private static final Pattern BUGCOLUMN_PATTERN = Pattern.compile( "<!--\\sBUGCOLUMN\\s(.*)\\s-->" );
+	private static final Pattern BUGPATHLENGTH_PATTERN = Pattern.compile( "<!--\\sBUGPATHLENGTH\\s(.*)\\s-->" );
 
 	private int bugThreshold;
 	private String clangexcludedpaths; 
@@ -242,8 +246,12 @@ public class ClangScanBuildPublisher extends Recorder{
 			instance.setBugDescription( getMatch( BUG_DESC_PATTERN, contents ) );
 			instance.setBugType( getMatch( BUG_TYPE_PATTERN, contents ) );
 			instance.setBugCategory( getMatch( BUGCATEGORY_PATTERN, contents ) );
+                        instance.setFunctionName( getMatch( FUNCTIONNAME_PATTERN, contents ) );
+                        instance.setBugLine( getMatch( BUGLINE_PATTERN, contents ) );
+                        instance.setBugColumn( getMatch( BUGCOLUMN_PATTERN, contents ) );
+                        instance.setBugPathLength( getMatch( BUGPATHLENGTH_PATTERN, contents ) );
+
 			String sourceFile = getMatch( BUGFILE_PATTERN, contents );
-      
 
 			// This attempts to shorten the file path by removing the workspace path and
 			// leaving only the path relative to the workspace.
