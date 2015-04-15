@@ -176,7 +176,15 @@ public class ClangScanBuildPublisher extends Recorder{
 
 	/**
 	 * Clang always creates a subfolder within the specified output folder that has a unique name.
-	 * This method locates the first subfolder of the output folder and copies its contents
+         *
+         * The report summary uses all report-*.html files in the scan-build output folder to generate
+         * the bug entries. Scan build may generate multiple dated folders with reports in for a
+         * build.
+         *
+         * Only the reports in the build archive folder are published so it is therefore necessary
+         * to copy the reports from all the dated folders into the reports folder.
+         *
+	 * This method locates the subfolders of the output folder and copies their contents
 	 * to the build archive folder.
 	 */
 	private void copyClangReportsOutOfGeneratedSubFolder( FilePath reportsFolder, BuildListener listener ){
@@ -187,9 +195,10 @@ public class ClangScanBuildPublisher extends Recorder{
 				return;
 			}
 	
-			FilePath clangDateFolder = subFolders.get( 0 );
-			clangDateFolder.copyRecursiveTo( reportsFolder );
-			clangDateFolder.deleteRecursive();
+			for (FilePath clangDateFolder : subFolders) {
+                            clangDateFolder.copyRecursiveTo( reportsFolder );
+                            clangDateFolder.deleteRecursive();
+                        }
 		}catch( Exception e ){
 			listener.fatalError( "Unable to copy Clan scan-build output to build archive folder." );
 		}
