@@ -1,23 +1,25 @@
 package jenkins.plugins.clangscanbuild.reports;
 
-import hudson.model.AbstractBuild;
+import hudson.model.Run;
 
 public class GraphPoint {
 
-	private AbstractBuild<?,?> build;
+        private Run<?,?> run;
+
+
 	private int bugCount;
 	
-	public GraphPoint(AbstractBuild<?, ?> build, int bugCount) {
+	public GraphPoint(Run<?, ?> run, int bugCount) {
 		super();
-		this.build = build;
+		this.run = run;
 		this.bugCount = bugCount;
 	}
 	
-	public AbstractBuild<?, ?> getBuild() {
-		return build;
+	public Run<?, ?> getRun() {
+		return run;
 	}
-	public void setBuild(AbstractBuild<?, ?> build) {
-		this.build = build;
+	public void setRun(Run<?, ?> run) {
+		this.run = run;
 	}
 	public int getBugCount() {
 		return bugCount;

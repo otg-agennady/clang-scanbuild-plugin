@@ -47,7 +47,7 @@ public class ClangBuildGraph extends Graph{
 		
 		DataSetBuilder<String, NumberOnlyBuildLabel> dataSetBuilder = new DataSetBuilder<String, NumberOnlyBuildLabel>();
 		for( GraphPoint point : points ){
-			dataSetBuilder.add( point.getBugCount(), "bugcount", new NumberOnlyBuildLabel( point.getBuild() ) );
+			dataSetBuilder.add( point.getBugCount(), "bugcount", new NumberOnlyBuildLabel( point.getRun() ) );
 		}
 		
         final JFreeChart chart = ChartFactory.createLineChart(
@@ -130,14 +130,14 @@ public class ClangBuildGraph extends Graph{
 		public String generateURL( CategoryDataset dataset, int series, int category ){
 			GraphPoint point = reversedPoints.get( category );
 			if( point == null ) return "";
-			return "/" + point.getBuild().getUrl() + "/" + ClangScanBuildAction.BUILD_ACTION_URL_NAME;
+			return "/" + point.getRun().getUrl() + "/" + ClangScanBuildAction.BUILD_ACTION_URL_NAME;
 		}
 
 		@Override
 		public String generateToolTip( CategoryDataset dataset, int row, int column ){
 			GraphPoint point = reversedPoints.get( column );
 			if( point == null ) return "";
-			return "Build #" + point.getBuild().number + " - " + point.getBugCount() + " bugs";
+			return "Build #" + point.getRun().number + " - " + point.getBugCount() + " bugs";
 		}
 		
 	}

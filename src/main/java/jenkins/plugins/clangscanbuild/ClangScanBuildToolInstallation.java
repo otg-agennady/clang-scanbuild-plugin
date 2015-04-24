@@ -8,7 +8,6 @@ import hudson.model.EnvironmentSpecific;
 import hudson.model.TaskListener;
 import hudson.model.Hudson;
 import hudson.model.Node;
-import hudson.remoting.Callable;
 import hudson.slaves.NodeSpecific;
 import hudson.tools.ToolDescriptor;
 import hudson.tools.ToolProperty;
@@ -18,6 +17,8 @@ import hudson.util.FormValidation;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+
+import jenkins.security.MasterToSlaveCallable;
 
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.QueryParameter;
@@ -47,7 +48,7 @@ public class ClangScanBuildToolInstallation extends ToolInstallation implements 
     }
 
     public String getExecutable( Launcher launcher ) throws IOException, InterruptedException {
-        return launcher.getChannel().call( new Callable<String,IOException>() {
+        return launcher.getChannel().call( new MasterToSlaveCallable<String,IOException>() {
 
 			private static final long serialVersionUID = 5437036131007277280L;
 
