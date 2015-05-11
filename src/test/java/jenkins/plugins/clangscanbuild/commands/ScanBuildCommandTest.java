@@ -21,10 +21,11 @@ public class ScanBuildCommandTest{
 		command.setClangOutputFolder( new FilePath( new File( "OutputFolder" ) ) );
 		command.setClangScanBuildPath( "/ScanBuild" );
 		command.setProjectDirectory( new FilePath( new File( "/ProjectDir" ) ) );
+		command.setTarget( "myTarget" );
 
 		String actual = buildCommandAndReturn( command );
 		
-		String expected = "/ScanBuild -k -v -v -o OutputFolder xcodebuild -activetarget -configuration Debug clean analyze";
+		String expected = "/ScanBuild -k -v -v -o OutputFolder xcodebuild -target myTarget -configuration Debug clean analyze";
 		Assert.assertEquals( expected, actual );
 	}
 	

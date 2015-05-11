@@ -1,6 +1,7 @@
 package jenkins.plugins.clangscanbuild.commands;
 
 import hudson.FilePath;
+import hudson.model.Failure;
 import hudson.util.ArgumentListBuilder;
 import jenkins.plugins.clangscanbuild.CommandExecutor;
 
@@ -68,11 +69,10 @@ public class ScanBuildCommand implements Command{
 			}
 		}else{
 			// Xcode standalone project
-			if( isNotBlank( getTarget() ) ){
-				args.add( "-target", getTarget() );
-			}else{
-				args.add( "-activetarget" );
+			if( isBlank( getTarget() ) ){
+				throw new Failure("No target specified");
 			}
+			args.add( "-target", getTarget() );
 		}
 
 		//These items can be provided with a target or can be used to override a workspace/scheme

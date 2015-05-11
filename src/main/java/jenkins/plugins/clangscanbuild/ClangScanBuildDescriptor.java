@@ -64,11 +64,17 @@ public class ClangScanBuildDescriptor extends BuildStepDescriptor<Builder>{
         save();
     }
 
+    public FormValidation doCheckTarget( @QueryParameter String value ) throws IOException, ServletException {
+    	if( value.length() == 0 ) return FormValidation.error( "You must provide a target." );
+        return FormValidation.ok();
+    }
+
+
     public FormValidation doCheckTargetSdk( @QueryParameter String value ) throws IOException, ServletException {
     	if( value.length() == 0 ) return FormValidation.error( "You must provide a target SDK.  You can execute 'xcodebuild -showsdks' from Terminal.app to see allowed values." );
         return FormValidation.ok();
     }
-	
+
     // CONFIG
     public FormValidation doCheckConfig( @QueryParameter String value ) throws IOException, ServletException {
         if( value.length() == 0 ) return FormValidation.warning( "If no build configuration is provided, the project's 'active' build configuration will be used automatically." );
