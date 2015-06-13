@@ -3,6 +3,7 @@ package jenkins.plugins.clangscanbuild.publisher;
 import hudson.Extension;
 import hudson.FilePath;
 import hudson.Launcher;
+import hudson.Util;
 import hudson.model.Action;
 import hudson.model.BuildListener;
 import hudson.model.Result;
@@ -56,7 +57,7 @@ public class ClangScanBuildPublisher extends Recorder{
 		super();
 		this.markBuildUnstableWhenThresholdIsExceeded = markBuildUnstableWhenThresholdIsExceeded;
 		this.bugThreshold = bugThreshold;
-		this.clangexcludedpaths = clangexcludedpaths;
+		this.clangexcludedpaths = Util.fixNull(clangexcludedpaths);
 	}
 
 	public int getBugThreshold() {
@@ -72,7 +73,7 @@ public class ClangScanBuildPublisher extends Recorder{
 	}
 
 	public void setClangexcludedpaths(String clangExcludePaths){
-		this.clangexcludedpaths = clangExcludePaths;
+		this.clangexcludedpaths = Util.fixNull(clangExcludePaths);
 	}
 
 	@Override
