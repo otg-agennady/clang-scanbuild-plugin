@@ -12,7 +12,7 @@
   <groupId>jenkins.plugins.clangscanbuild</groupId>
   <artifactId>clang-scanbuild-plugin</artifactId>
   <name>Clang Scan-Build Plugin</name>
-  <version>1.6-SNAPSHOT</version>
+  <version>1.6</version>
   <packaging>hpi</packaging>
   <description>Provides an easy way to execute and report Clang scan-build errors using jenkins</description>
   <url>http://wiki.jenkins-ci.org/display/JENKINS/Clang+Scan-Build+Plugin</url>
@@ -21,7 +21,7 @@
     <connection>scm:git:https://github.com/jenkinsci/clang-scanbuild-plugin.git</connection>
     <developerConnection>scm:git:https://github.com/jenkinsci/clang-scanbuild-plugin.git</developerConnection>
     <url>https://github.com/jenkinsci/clang-scanbuild-plugin</url>
-    <tag>HEAD</tag>
+    <tag>clang-scanbuild-plugin-1.6</tag>
   </scm>
   
   <developers>
