@@ -1,5 +1,6 @@
 package jenkins.plugins.clangscanbuild.publisher;
 
+import jenkins.plugins.clangscanbuild.ClangScanBuildUtils;
 import net.sf.json.JSONObject;
 
 import org.kohsuke.stapler.StaplerRequest;
@@ -15,24 +16,27 @@ public class ClangScanBuildPublisherDescriptor extends BuildStepDescriptor<Publi
 		super( ClangScanBuildPublisher.class );
 		load();
 	}
-	
+
 	@Override
 	public Publisher newInstance(StaplerRequest arg0, JSONObject json ) throws hudson.model.Descriptor.FormException {
 
 		boolean markBuildUnstable = false;
 		int bugThreshold = 0;
 		String excludedPaths = "";
-		
+		String reportFolderName = ClangScanBuildUtils.REPORT_OUTPUT_FOLDERNAME;
+
 		JSONObject failWhenThresholdExceeded = json.optJSONObject( "failWhenThresholdExceeded" );
 		if( failWhenThresholdExceeded != null ){
 			markBuildUnstable = true;
 			bugThreshold = failWhenThresholdExceeded.getInt( "bugThreshold" );
 			excludedPaths = failWhenThresholdExceeded.getString( "clangexcludedpaths" );
 		}
-    		
-		return new ClangScanBuildPublisher( markBuildUnstable, bugThreshold, excludedPaths );
+
+		reportFolderName = json.getString("reportFolderName");
+
+		return new ClangScanBuildPublisher( markBuildUnstable, bugThreshold, excludedPaths, reportFolderName );
 	}
-	
+
 	@Override
 	public String getDisplayName() {
 		return "Publish Clang Scan-Build Results";

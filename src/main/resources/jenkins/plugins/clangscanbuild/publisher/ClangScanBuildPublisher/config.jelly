@@ -13,6 +13,11 @@
 			</f:entry>
 	      
 	    </f:optionalBlock>
+
+	    <f:entry title="Report folder" field="reportFolderName">
+				<f:textbox default="clangScanBuildReports"/>
+		</f:entry>
+
 	  </table>
    </f:nested>
   	
