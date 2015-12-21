@@ -4,12 +4,9 @@ import hudson.FilePath;
 import hudson.model.Action;
 import hudson.model.ModelObject;
 import hudson.model.AbstractBuild;
-import hudson.util.FormValidation;
 
 import java.io.IOException;
 import java.util.regex.Pattern;
-
-import javax.servlet.ServletException;
 
 import jenkins.plugins.clangscanbuild.ClangScanBuildUtils;
 import jenkins.plugins.clangscanbuild.history.ClangScanBuildBugSummary;
