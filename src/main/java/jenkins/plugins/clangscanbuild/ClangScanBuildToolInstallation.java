@@ -6,7 +6,6 @@ import hudson.Launcher;
 import hudson.Util;
 import hudson.model.EnvironmentSpecific;
 import hudson.model.TaskListener;
-import hudson.model.Hudson;
 import hudson.model.Node;
 import hudson.slaves.NodeSpecific;
 import hudson.tools.ToolDescriptor;
@@ -18,6 +17,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
+import jenkins.model.Jenkins;
 import jenkins.security.MasterToSlaveCallable;
 
 import org.kohsuke.stapler.DataBoundConstructor;
@@ -88,7 +88,7 @@ public class ClangScanBuildToolInstallation extends ToolInstallation implements 
         }
         
         private ClangScanBuildDescriptor locateMainDescriptor(){
-        	return Hudson.getInstance().getDescriptorByType( ClangScanBuildDescriptor.class );
+        	return Jenkins.getInstance().getDescriptorByType( ClangScanBuildDescriptor.class );
         }
 
         /**
@@ -98,7 +98,7 @@ public class ClangScanBuildToolInstallation extends ToolInstallation implements 
 
             // don't reveal file existence information to non-administrators
         	// some one could brute force files paths to determine what is on a server
-        	if( !Hudson.getInstance().hasPermission( Hudson.ADMINISTER ) ) return FormValidation.ok();
+        	if( !Jenkins.getInstance().hasPermission( Jenkins.ADMINISTER ) ) return FormValidation.ok();
 
             if( value.getPath().equals( "" ) ) return FormValidation.ok(); // can be blank for master configurations and overriden on nodes
 
