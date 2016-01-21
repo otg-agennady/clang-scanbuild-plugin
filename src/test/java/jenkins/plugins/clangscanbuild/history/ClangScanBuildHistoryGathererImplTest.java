@@ -10,16 +10,20 @@ import jenkins.plugins.clangscanbuild.actions.ClangScanBuildAction;
 import jenkins.plugins.clangscanbuild.reports.GraphPoint;
 
 import org.junit.Assert;
+import org.junit.Rule;
 import org.junit.Test;
-import org.jvnet.hudson.test.HudsonTestCase;
+import org.jvnet.hudson.test.JenkinsRule;
 
-public class ClangScanBuildHistoryGathererImplTest extends HudsonTestCase{
+public class ClangScanBuildHistoryGathererImplTest {
 
 	private ClangScanBuildHistoryGathererImpl classUnderTest = new ClangScanBuildHistoryGathererImpl( 5 );
 
+	@Rule
+	public JenkinsRule j = new JenkinsRule();
+
 	@Test
 	public void testBuildSummaryForBuildsExceedingThresholdNotReturned() throws Exception{
-		FreeStyleProject project = createFreeStyleProject( "Test Project" );
+		FreeStyleProject project = j.createFreeStyleProject( "Test Project" );
 		
 		// The test instance is set to a threshold of 5...builds 2 and 7 should be excluded
 		performBuildWithClangAction( project, 1, "outputFolderName-1" );
@@ -33,7 +37,7 @@ public class ClangScanBuildHistoryGathererImplTest extends HudsonTestCase{
 
 	@Test
 	public void testFirstBuildDoesNotFail() throws Exception{
-		FreeStyleProject project = createFreeStyleProject( "Test Project" );
+		FreeStyleProject project = j.createFreeStyleProject( "Test Project" );
 		
 		FreeStyleBuild build1 = performBuildWithClangAction( project, 1, "outputFolderName-1" );
 		
