@@ -5,7 +5,7 @@ import hudson.util.ArgumentListBuilder;
 
 import java.io.File;
 
-import junit.framework.Assert;
+import org.junit.Assert;
 
 import org.easymock.Capture;
 import org.easymock.EasyMock;
