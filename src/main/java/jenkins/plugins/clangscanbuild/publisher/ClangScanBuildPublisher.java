@@ -164,7 +164,7 @@ public class ClangScanBuildPublisher extends Recorder{
 
 		// this adds a build actions which records the bug count into the build results.  This count is used to generate the trend charts
 		final ClangScanBuildAction action = new ClangScanBuildAction( build, newBugSummary.getBugCount(), markBuildUnstableWhenThresholdIsExceeded, bugThreshold, bugSummaryXMLFile, expandedReportFolderName );
-        build.getActions().add( action );
+        build.addAction( action );
 
         // this checks if the build should be failed due to an increase in bugs
         if( action.buildFailedDueToExceededThreshold() ){
