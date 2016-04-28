@@ -35,7 +35,7 @@ public class ClangScanBuildDescriptor extends BuildStepDescriptor<Builder>{
 		// super class since I am not following the convention of static inner classes.  
 		// Typically, the Descriptor is an inner class and Jenkins introspects this type
 		// from the outer class.
-		super( ClangScanBuildBuilder.class ); 
+		super( ClangAnalyzerBuilder.class );
 		load();
 	}
 	

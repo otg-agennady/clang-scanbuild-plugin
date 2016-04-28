@@ -23,7 +23,7 @@ import org.kohsuke.stapler.DataBoundConstructor;
  *
  * @author Joshua Kennedy
  */
-public class ClangScanBuildBuilder extends Builder{
+public class ClangAnalyzerBuilder extends Builder{
 	
 	@Extension
     public static final ClangScanBuildDescriptor DESCRIPTOR = new ClangScanBuildDescriptor();
@@ -45,7 +45,7 @@ public class ClangScanBuildBuilder extends Builder{
     private String outputFolderName;
 
     @DataBoundConstructor
-    public ClangScanBuildBuilder( 
+    public ClangAnalyzerBuilder(
     		String target, 
     		String targetSdk, 
     		String config, 

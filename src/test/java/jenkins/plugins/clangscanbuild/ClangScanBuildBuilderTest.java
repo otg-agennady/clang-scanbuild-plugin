@@ -17,14 +17,14 @@ public class ClangScanBuildBuilderTest {
 		
 		FreeStyleProject p = j.createFreeStyleProject();
 		
-		ClangScanBuildBuilder builderBefore = new ClangScanBuildBuilder( "target", "sdk", "config", 
+		ClangAnalyzerBuilder builderBefore = new ClangAnalyzerBuilder( "target", "sdk", "config",
 				"installName", "projPath", "workspace", "scheme", "someargs", "somexcodeargs", "someoutputfoldername" );
 		p.getBuildersList().add( builderBefore );
 
 		HtmlForm form = j.createWebClient().getPage( p, "configure" ).getFormByName( "config" );
 		j.submit( form );
 
-		ClangScanBuildBuilder builderAfter = p.getBuildersList().get( ClangScanBuildBuilder.class );
+		ClangAnalyzerBuilder builderAfter = p.getBuildersList().get( ClangAnalyzerBuilder.class );
 
 		j.assertEqualBeans( builderBefore, builderAfter, "target,config,targetSdk,xcodeProjectSubPath,workspace,scheme,scanbuildargs,xcodebuildargs,outputFolderName" );
 	}
