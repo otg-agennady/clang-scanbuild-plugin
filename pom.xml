@@ -10,26 +10,26 @@
         <relativePath/>
     </parent>
 
-    <groupId>jenkins.plugins.clangscanbuild</groupId>
-    <artifactId>clang-scanbuild-plugin</artifactId>
-    <name>Clang Scan-Build Plugin</name>
-    <version>1.8-SNAPSHOT</version>
+    <groupId>com.lzlabs.rentcontrol</groupId>
+    <artifactId>clang-analyzer-plugin</artifactId>
+    <name>Clang Analyzer Plugin</name>
+    <version>0.1-SNAPSHOT</version>
     <packaging>hpi</packaging>
-    <description>Provides an easy way to execute and report Clang scan-build errors using jenkins</description>
-    <url>http://wiki.jenkins-ci.org/display/JENKINS/Clang+Scan-Build+Plugin</url>
+    <description>Provides a summary of clang code analysis, without scan-build and for any OS (requires clang only)
+    </description>
 
     <scm>
-        <connection>scm:git:https://github.com/jenkinsci/clang-scanbuild-plugin.git</connection>
-        <developerConnection>scm:git:https://github.com/jenkinsci/clang-scanbuild-plugin.git</developerConnection>
-        <url>https://github.com/jenkinsci/clang-scanbuild-plugin</url>
+        <connection>scm:git:https://github.com/otg-agennady/clang-scanbuild-plugin.git</connection>
+        <developerConnection>scm:git:https://github.com/otg-agennady/clang-scanbuild-plugin.git</developerConnection>
+        <url>https://github.com/otg-agennady/clang-scanbuild-plugin</url>
         <tag>HEAD</tag>
     </scm>
 
     <developers>
         <developer>
-            <id>jkennedy1980</id>
-            <name>Joshua Kennedy</name>
-            <email>josh@ponycode.com</email>
+            <id>otg-agennady</id>
+            <name>Gennady Alimov</name>
+            <email>alimov.gennady@ontarget-group.com</email>
         </developer>
     </developers>
 
@@ -98,13 +98,6 @@
             </plugin>
         </plugins>
     </build>
-
-    <distributionManagement>
-        <repository>
-            <id>maven.jenkins-ci.org</id>
-            <url>http://maven.jenkins-ci.org:8081/content/repositories/releases/</url>
-        </repository>
-    </distributionManagement>
 
     <reporting>
         <plugins>
